@@ -1,0 +1,21 @@
+<nav>
+    <a href="/">Home</a> |
+    <a href="/react">React App</a> |
+    <a href="/vue">Vue App</a>
+</nav>
+<div id="root">Halaman Utama</div>
+
+<script type="module">
+    async function loadApp() {
+        if (location.pathname === "/react") {
+            const reactApp = await import("/app-react/app-react.js");
+            reactApp.mount(document.getElementById("root"));
+        }
+
+        if (location.pathname === "/vue") {
+            const vueApp = await import("/app-vue/app-vue.js");
+            vueApp.mount(document.getElementById("root"));
+        }
+    }
+    loadApp();
+</script>
