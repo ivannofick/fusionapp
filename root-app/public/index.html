@@ -1,21 +1,49 @@
 <nav>
     <a href="/">Home</a> |
     <a href="/react">React App</a> |
-    <a href="/vue">Vue App</a>
+    <a href="/vue">Vue App</a> |
+    <a href="/next">Next.js App</a>
 </nav>
 <div id="root">Halaman Utama</div>
 
 <script type="module">
     async function loadApp() {
+        const root = document.getElementById("root");
+
         if (location.pathname === "/react") {
             const reactApp = await import("/app-react/app-react.js");
-            reactApp.mount(document.getElementById("root"));
+            reactApp.mount(root);
         }
 
         if (location.pathname === "/vue") {
             const vueApp = await import("/app-vue/app-vue.js");
-            vueApp.mount(document.getElementById("root"));
+            vueApp.mount(root);
+        }
+
+        if (location.pathname === "/next") {
+            // fetch index.html dari hasil export Next.js
+            const html = await fetch("/app-next/index.html").then((res) => res.text());
+            root.innerHTML = html;
+
+            // load semua JS & CSS Next.js
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+
+            doc.querySelectorAll("link[rel=stylesheet]").forEach((link) => {
+                const newLink = document.createElement("link");
+                newLink.rel = "stylesheet";
+                newLink.href = link.href;
+                document.head.appendChild(newLink);
+            });
+
+            doc.querySelectorAll("script").forEach((script) => {
+                const newScript = document.createElement("script");
+                newScript.src = script.src;
+                newScript.type = script.type || "text/javascript";
+                document.body.appendChild(newScript);
+            });
         }
     }
+
     loadApp();
 </script>

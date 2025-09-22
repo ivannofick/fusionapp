@@ -17,6 +17,9 @@ app.use("/app-react", express.static(path.join(__dirname, "../app-react/dist")))
 // serve microfrontend vue
 app.use("/app-vue", express.static(path.join(__dirname, "../app-vue/dist")));
 
+// serve microfrontend nextjs
+app.use("/app-next", express.static(path.join(__dirname, "../app-next/out")));
+
 // fallback ke index.html
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
