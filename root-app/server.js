@@ -29,7 +29,7 @@ await nextApp.prepare();
 
 // Mount Next.js di root, tanpa basePath
 // Dev or Production: Next.js mount
-app.all("/app-next", (req, res) => nextHandler(req, res));
+app.all("/app-next(/*)?", (req, res) => nextHandler(req, res));
 
 
 
