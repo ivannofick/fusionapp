@@ -29,11 +29,14 @@ await nextApp.prepare();
 
 // Mount Next.js di root, tanpa basePath
 // Dev or Production: Next.js mount
-app.all(/.*/, (req, res) => nextHandler(req, res));
+app.all("/app-next", (req, res) => nextHandler(req, res));
 
 
-// Static file / SPA fallback
+
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(["/app-react", "/react"], express.static(path.join(__dirname, "../app-react/dist")));
+app.use(["/app-vue", "/vue"], express.static(path.join(__dirname, "../app-vue/dist")));
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });

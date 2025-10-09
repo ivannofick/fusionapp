@@ -10,12 +10,12 @@
     async function loadApp() {
         const root = document.getElementById("root");
 
-        if (location.pathname === "/react") {
+        if (location.pathname === "/react" || location.pathname === "/react/") {
             const reactApp = await import("/app-react/app-react.js");
             reactApp.mount(root);
         }
 
-        if (location.pathname === "/vue") {
+        if (location.pathname === "/vue" || location.pathname === "/vue/") {
             const vueApp = await import("/app-vue/app-vue.js");
             vueApp.mount(root);
         }
