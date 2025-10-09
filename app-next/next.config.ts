@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // basePath: '/app-next',
+  basePath: '/app-next',
   // output: 'standalone',
 };
 
