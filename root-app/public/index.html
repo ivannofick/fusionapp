@@ -2,7 +2,7 @@
     <a href="/">Home</a> |
     <a href="/react">React App</a> |
     <a href="/vue">Vue App</a> |
-    <a href="/next">Next.js App</a>
+    <a href="/app-next">Next.js App</a>
 </nav>
 <div id="root">Halaman Utama</div>
 
@@ -20,7 +20,7 @@
             vueApp.mount(root);
         }
 
-        if (location.pathname === "/next") {
+        if (location.pathname === "/app-next") {
             // fetch index.html dari hasil export Next.js
             const html = await fetch("/app-next/index.html").then((res) => res.text());
             root.innerHTML = html;
